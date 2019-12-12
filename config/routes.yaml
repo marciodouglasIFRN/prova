@@ -1,0 +1,86 @@
+alunos:
+  path: /alunos
+  controller: App\Controller\AlunoController::search
+  methods:
+    - GET
+create_aluno:
+  path: /alunos
+  controller: App\Controller\AlunoController::create
+  methods:
+    - POST
+
+buscar_aluno:
+  path: /alunos/{id}
+  controller: App\Controller\AlunoController::searchByOne
+  methods:
+    - GET
+
+remove_aluno:
+  path: /alunos/{id}
+  controller: App\Controller\AlunoController::remove
+  methods:
+    - DELETE
+
+projeto:
+  path: /projeto
+  controller: App\Controller\ProjetoController::search
+  methods:
+    - GET
+create_projeto:
+  path: /projeto
+  controller: App\Controller\ProjetoController::createProject
+  methods:
+    - POST
+
+buscar_projeto:
+  path: /projeto/{id}
+  controller: App\Controller\ProjetoController::searchByOne
+  methods:
+    - GET
+
+remove_projeto:
+  path: /projeto/{id}
+  controller: App\Controller\ProjetoController::remove
+  methods:
+    - DELETE
+
+professor:
+  path: /professores
+  controller: App\Controller\ProfessorController::search
+  methods:
+    - GET
+create_professores:
+  path: /professores
+  controller: App\Controller\ProfessorController::create
+  methods:
+    - POST
+
+buscar_professores:
+  path: /professores/{id}
+  controller: App\Controller\ProfessorController::searchByOne
+  methods:
+    - GET
+
+remove_professor:
+  path: /professores/{id}
+  controller: App\Controller\ProfessorController::remove
+  methods:
+    - DELETE
+
+inscrever_aluno:
+  path: /inscrever
+  controller: App\Controller\ProfessorController::inscrever
+  methods:
+    - POST
+
+listar_projetos:
+  path: /projetos/{id}
+  controller: App\Controller\ProfessorController::listarProjetos
+  methods:
+    - GET
+
+listar_projetos_status:
+  path: /projetosfiltro/{status}
+  controller: App\Controller\ProjetoController::projetosFiltro
+  methods:
+    - GET
