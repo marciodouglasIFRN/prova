@@ -29,6 +29,7 @@ class ProfessorController extends GenericController
         $projeto = $this->getDoctrine()->getRepository(Projeto::class);
         $projeto = $projeto->find($content->projeto);
 
+
         $projeto->addBolsista($aluno);
         $this->entityManager->persist($projeto);
         $this->entityManager->flush();
@@ -48,6 +49,25 @@ class ProfessorController extends GenericController
 
         return new JsonResponse($projetos);
     }
+
+    public function RetirarBolsistar(Request $request)
+    {
+        $content = json_decode($request->getContent());
+        $aluno = $this->getDoctrine()->getRepository(Aluno::class);
+        $aluno = $aluno->find($content->aluno);
+
+        $projeto = $this->getDoctrine()->getRepository(Projeto::class);
+        $projeto = $projeto->find($content->projeto);
+
+
+        $projeto->removeBolsista($aluno);
+        $this->entityManager->persist($projeto);
+        $this->entityManager->flush();
+
+        return new JsonResponse($projeto);
+    }
+
+
     public function updateEntity($entity, $entityUpdate)
     {
         // TODO: Implement updateEntity() method.
