@@ -28,13 +28,18 @@ class ProjetoController extends GenericController
         $content = json_decode($request->getContent());
         $professor = $this->getDoctrine()->getRepository(Professor::class);
         $professor = $professor->find($content->orientador);
+
         $projeto = new Projeto();
         $projeto->setOrientador($professor);
         $projeto->setNome($content->nome);
         $projeto->setStatus(true);
+
+
         $this->entityManager->persist($projeto);
         $this->entityManager->flush();
-        return new JsonResponse($projeto);
+
+
+        return new JsonResponse($professor);
     }
 
     public function projetosFiltro(string $status, Request $request){
@@ -45,6 +50,18 @@ class ProjetoController extends GenericController
         }
         $projeto = $this->getDoctrine()->getRepository(Projeto::class);
         $projetos = $projeto->findByStatus($status);
+
+        return new JsonResponse($projetos);
+    }
+
+    public function finalizarProjeto(int $id){
+
+        $projeto = $this->getDoctrine()->getRepository(Projeto::class);
+        $projetos = $projeto->find($id);
+        $projetos->setStatus(false);
+
+        $this->entityManager->persist($projetos);
+        $this->entityManager->flush();
 
         return new JsonResponse($projetos);
     }
