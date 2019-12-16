@@ -79,8 +79,24 @@ listar_projetos:
   methods:
     - GET
 
+
 listar_projetos_status:
   path: /projetosfiltro/{status}
   controller: App\Controller\ProjetoController::projetosFiltro
   methods:
     - GET
+
+
+Retira_Bolsa:
+  path: /trancamento
+  controller: App\Controller\ProfessorController::RetirarBolsistar
+  methods:
+    - POST
+
+Finalizar_projeto:
+  path: /finalizar/{id}
+  controller: App\Controller\ProjetoController::finalizarProjeto
+  methods:
+    - GET
+
+
