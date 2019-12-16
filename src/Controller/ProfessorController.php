@@ -25,6 +25,12 @@ class ProfessorController extends GenericController
         $content = json_decode($request->getContent());
         $aluno = $this->getDoctrine()->getRepository(Aluno::class);
         $aluno = $aluno->find($content->aluno);
+        if($aluno->getInscrito()){
+            return new JsonResponse("Aluno já está em um projeto",400);
+        }
+        $aluno->setInscrito(true);
+        $this->entityManager->persist($aluno);
+        $this->entityManager->flush();
 
         $projeto = $this->getDoctrine()->getRepository(Projeto::class);
         $projeto = $projeto->find($content->projeto);
@@ -55,6 +61,10 @@ class ProfessorController extends GenericController
         $content = json_decode($request->getContent());
         $aluno = $this->getDoctrine()->getRepository(Aluno::class);
         $aluno = $aluno->find($content->aluno);
+
+        $aluno->setInscrito(false);
+        $this->entityManager->persist($aluno);
+        $this->entityManager->flush();
 
         $projeto = $this->getDoctrine()->getRepository(Projeto::class);
         $projeto = $projeto->find($content->projeto);

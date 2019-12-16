@@ -31,6 +31,11 @@ class Aluno implements \JsonSerializable
      */
     private $log;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $inscrito;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -83,6 +88,18 @@ class Aluno implements \JsonSerializable
     public function setLog(?Log $log): self
     {
         $this->log = $log;
+
+        return $this;
+    }
+
+    public function getInscrito(): ?bool
+    {
+        return $this->inscrito;
+    }
+
+    public function setInscrito(?bool $inscrito): self
+    {
+        $this->inscrito = $inscrito;
 
         return $this;
     }
